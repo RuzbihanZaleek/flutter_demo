@@ -34,6 +34,30 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("App Bar"),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {},
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.more_vert,
+              color: Colors.black,
+            ),
+          )
+        ],
+        flexibleSpace: Image.asset(
+          "assets/back.jpg", // displays in a small area without fit
+          fit: BoxFit.cover, // cover full app bar space
+        ),
         backgroundColor: Colors.blue,
       ),
       body: const Center(
