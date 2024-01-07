@@ -75,12 +75,24 @@ class MyHomePage extends StatelessWidget {
               Colors.blue, //flexible space will override background color
         ),
         body: Container(
-          color: Colors.green,
-          height: 200.0,
-          width: double.infinity,
-          child: Text(
-            "Container",
-            style: TextStyle(fontSize: 20.0),
+          color: Colors.pink,
+          width: 300.0,
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text('Text 1', style: TextStyle(fontSize: 20.0)),
+              Text('Text 2', style: TextStyle(fontSize: 20.0)),
+              Text('Text 3', style: TextStyle(fontSize: 20.0)),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Text 4', style: TextStyle(fontSize: 20.0)),
+                  Text('Text 5', style: TextStyle(fontSize: 20.0)),
+                  Text('Text 6', style: TextStyle(fontSize: 20.0)),
+                ],
+              )
+            ],
           ),
         ),
       ),
