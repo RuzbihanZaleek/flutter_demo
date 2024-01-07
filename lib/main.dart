@@ -18,11 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, //remove debug badge
+      debugShowCheckedModeBanner: false,
+      //remove debug badge
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       title: 'Flutter Demo',
-      home: MyHomePage(),
+      theme:
+          ThemeData(brightness: Brightness.dark, primarySwatch: Colors.orange),
+      home: const MyHomePage(),
     );
   }
 }
@@ -35,58 +38,62 @@ class MyHomePage extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text("App Bar", style: TextStyle(color: Colors.white)),
-            leading: IconButton(
-              icon: const Icon(Icons.menu, color: Colors.white),
-              onPressed: () {},
-            ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.more_vert,
-                  color: Colors.white,
-                ),
-              )
-            ],
-            flexibleSpace: Image.asset(
-              "assets/back.jpg", // displays in a small area without fit
-              fit: BoxFit.cover, // cover full app bar space
-            ),
-            bottom: const TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.directions_car, color: Colors.white)),
-                Tab(icon: Icon(Icons.directions_train, color: Colors.white)),
-                Tab(icon: Icon(Icons.directions_bike, color: Colors.white))
-              ],
-            ),
-            backgroundColor: Colors.blue, //flexible space will override background color
+        appBar: AppBar(
+          title: const Text("App Bar", style: TextStyle(color: Colors.white)),
+          leading: IconButton(
+            icon: const Icon(Icons.menu, color: Colors.white),
+            onPressed: () {},
           ),
-          body: TabBarView(
-            children: [
-              tabBody("Direction Cars", Icons.directions_car),
-              tabBody("Direction Train", Icons.directions_train),
-              tabBody("Direction Bike", Icons.directions_bike),
-            ],
-          )),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.more_vert,
+                color: Colors.white,
+              ),
+            )
+          ],
+          flexibleSpace: Image.asset(
+            "assets/back.jpg", // displays in a small area without fit
+            fit: BoxFit.cover, // cover full app bar space
+          ),
+          // bottom: const TabBar(
+          //   tabs: [
+          //     Tab(icon: Icon(Icons.directions_car, color: Colors.white)),
+          //     Tab(icon: Icon(Icons.directions_train, color: Colors.white)),
+          //     Tab(icon: Icon(Icons.directions_bike, color: Colors.white))
+          //   ],
+          // ),
+          backgroundColor:
+              Colors.blue, //flexible space will override background color
+        ),
+        body: Container(
+          color: Colors.green,
+          height: 200.0,
+          width: double.infinity,
+          child: Text(
+            "Container",
+            style: TextStyle(fontSize: 20.0),
+          ),
+        ),
+      ),
     );
   }
 }
 
-Widget tabBody(String? bodyText, IconData icon) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text("$bodyText", style: const TextStyle(fontSize: 35.0)),
-      Icon(icon)
-    ],
-  );
-}
+// Widget tabBody(String? bodyText, IconData icon) {
+//   return Column(
+//     mainAxisAlignment: MainAxisAlignment.center,
+//     children: [
+//       Text("$bodyText", style: const TextStyle(fontSize: 35.0)),
+//       Icon(icon)
+//     ],
+//   );
+// }
