@@ -70,34 +70,38 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor:
               Colors.blue, //flexible space will override background color
         ),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        body: ListView(
+          scrollDirection: Axis.vertical,
           children: [
-            const Text('Text 1', style: TextStyle(fontSize: 20.0)),
-            const Text('Text 2', style: TextStyle(fontSize: 20.0)),
-            const Text('Text 3', style: TextStyle(fontSize: 20.0)),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text('Text 4', style: TextStyle(fontSize: 20.0)),
-                const Text('Text 5', style: TextStyle(fontSize: 20.0)),
-                const Text('Text 6', style: TextStyle(fontSize: 20.0)),
-                Text('Button clicked $count times',
-                    style: const TextStyle(fontSize: 20.0)),
-              ],
-            )
+            listTileWidget(Icons.brightness_auto, "Brightness Auto",
+                "Change the brightness"),
+            const Divider(),
+            listTileWidget(Icons.image, "Change Image", "Change the image"),
+            const Divider(),
+            listTileWidget(Icons.keyboard_alt_outlined, "Keyboard Layout",
+                "Change the keyboard layout"),
+            const Divider(),
+            listTileWidget(
+                Icons.ac_unit, "Ring Option", "Change the ring option"),
+            const Divider(),
+            listTileWidget(Icons.settings, "Settings", "Change settings"),
+            const Divider(),
+            listTileWidget(Icons.nature_people, "Near", "", menu: false),
+            const Divider(),
+            listTileWidget(Icons.cloud_download, "Backups", "", menu: false),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // handlePlusButton();
-            Navigator.of(context).pushNamed('/second');
-          },
-          tooltip: "Go to next page",
-          child: const Icon(Icons.add),
         ),
       ),
     );
   }
+}
+
+Widget listTileWidget(IconData leadingIcon, String title, String subTitle,
+    {bool menu = true}) {
+  return ListTile(
+    leading: Icon(leadingIcon),
+    title: Text(title),
+    subtitle: subTitle.isNotEmpty ? Text(subTitle) : null,
+    trailing: menu ? const Icon(Icons.menu) : null,
+  );
 }
