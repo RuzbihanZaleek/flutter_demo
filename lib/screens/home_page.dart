@@ -15,6 +15,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int count = 0;
 
+  //Items Array
+  var items = List<String>.generate(100, (index) => 'Item $index');
+
   void increment() {
     setState(() {
       count++;
@@ -70,26 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor:
               Colors.blue, //flexible space will override background color
         ),
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            listTileWidget(Icons.brightness_auto, "Brightness Auto",
-                "Change the brightness"),
-            const Divider(),
-            listTileWidget(Icons.image, "Change Image", "Change the image"),
-            const Divider(),
-            listTileWidget(Icons.keyboard_alt_outlined, "Keyboard Layout",
-                "Change the keyboard layout"),
-            const Divider(),
-            listTileWidget(
-                Icons.ac_unit, "Ring Option", "Change the ring option"),
-            const Divider(),
-            listTileWidget(Icons.settings, "Settings", "Change settings"),
-            const Divider(),
-            listTileWidget(Icons.nature_people, "Near", "", menu: false),
-            const Divider(),
-            listTileWidget(Icons.cloud_download, "Backups", "", menu: false),
-          ],
+        body: ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return listTileWidget(
+                Icons.email, items[index], 'sub ${items[index]}');
+          },
         ),
       ),
     );
