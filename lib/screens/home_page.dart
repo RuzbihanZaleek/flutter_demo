@@ -31,14 +31,40 @@ class _MyHomePageState extends State<MyHomePage> {
     }));
   }
 
+  TextEditingController title = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    title.text = "Controller";
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title:
-              Text(widget.title, style: const TextStyle(color: Colors.white)),
+          title: TextField(
+            keyboardType: TextInputType.text,
+            controller: title,
+            decoration: InputDecoration(
+              prefixIcon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              suffixIcon: IconButton(
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  title.text = '';
+                },
+              ),
+              border: InputBorder.none,
+              filled: true,
+              fillColor: Colors.blueAccent,
+              hintText: 'Search...',
+              hintStyle: const TextStyle(color: Colors.white70),
+            ),
+          ),
           leading: IconButton(
             icon: const Icon(Icons.menu, color: Colors.white),
             onPressed: () {},
@@ -73,12 +99,44 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor:
               Colors.blue, //flexible space will override background color
         ),
-        body: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return listTileWidget(
-                Icons.email, items[index], 'sub ${items[index]}');
-          },
+        body: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: TextField(
+                  maxLength: 8,
+                  // obscureText: true, //hide text
+                  // enabled: false,
+                  // keyboardType: TextInputType.number,
+                  style: const TextStyle(fontSize: 20.0),
+                  onChanged: (typing) {
+                    print(typing); //printing each type
+                  },
+                  onSubmitted: (text) {
+                    print("Submitted $text"); //printing type after submitted
+                  },
+                  controller: title,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(20.0),
+                child: TextField(
+                  maxLength: 8,
+                  // obscureText: true, //hide text
+                  keyboardType: TextInputType.number,
+                  style: TextStyle(fontSize: 20.0),
+                  autofocus: true,
+                  cursorColor: Colors.green,
+                  decoration: InputDecoration(
+                    hintText: "Hello",
+                    icon: Icon(Icons.search),
+                    prefixIcon: Icon(Icons.book),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
