@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter_demo/screens/form-test.dart';
+import 'package:flutter_demo/screens/form.dart';
 import 'package:flutter_demo/screens/second_screen.dart';
 
 import 'screens/home_page.dart';
@@ -27,8 +29,8 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       title: 'Flutter Demo',
       theme:
-          ThemeData(brightness: Brightness.dark, primarySwatch: Colors.orange),
-      home: const MyHomePage(title: "Flutter Navigation"),
+          ThemeData(brightness: Brightness.light, primarySwatch: Colors.orange),
+      home: const MainForm(),
       routes: <String, WidgetBuilder>{
         '/second': (context) => SecondScreen(text: "Welcome to Screen 2"),
       },
