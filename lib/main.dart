@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter_demo/screens/form-test.dart';
 import 'package:flutter_demo/screens/form.dart';
+import 'package:flutter_demo/screens/network_request.dart';
 import 'package:flutter_demo/screens/second_screen.dart';
 
 import 'screens/home_page.dart';
@@ -30,10 +31,54 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme:
           ThemeData(brightness: Brightness.light, primarySwatch: Colors.orange),
-      home: const MainForm(),
+      home: const Home(),
       routes: <String, WidgetBuilder>{
-        '/second': (context) => SecondScreen(text: "Welcome to Screen 2"),
+        '/second': (context) => const NetworkRequest(),
       },
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    void handleClickMeBtn() {
+      Navigator.of(context).pushNamed("/second");
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Asynchronous Programming",
+            style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.lightGreen,
+      ),
+      body: Center(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Asynchronous Programming",
+                  style: TextStyle(fontSize: 25.0)),
+              OutlinedButton(
+                onPressed: () {
+                  handleClickMeBtn();
+                },
+                child: const Text(
+                  "Click Me",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
